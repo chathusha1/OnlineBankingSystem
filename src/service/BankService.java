@@ -1,50 +1,57 @@
 package service;
 
-import model.User;
-import java.util.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Scanner;
 
 public class BankService {
-    private List<User> users = new ArrayList<>();
+    Scanner input = new Scanner(System.in);
 
-    public void createAccount(String username, String password) {
-        User user = new User(username, password, 0.0);
-        users.add(user);
-        System.out.println("Account created for " + username);
+    public void createAccount() {
+        try {
+            Connection conn = DBConnection.getConnection();
+            if (conn != null) {
+                System.out.print("Enter account holder name: ");
+                String name = input.nextLine();
+                System.out.print("Enter initial deposit: ");
+                double balance = input.nextDouble();
+                input.nextLine();
+
+                String sql = "INSERT INTO accounts (name, balance) VALUES (?, ?)";
+                PreparedStatement stmt = conn.prepareStatement(sql);
+                stmt.setString(1, name);
+                stmt.setDouble(2, balance);
+                stmt.executeUpdate();
+                System.out.println("✅ Account created successfully!");
+            }
+        } catch (Exception e) {
+            System.out.println("❌ Error creating account.");
+            e.printStackTrace();
+        }
     }
 
-    public void deposit(String username, double amount) {
-        for (User user : users) {
-            if (user.getUsername().equals(username)) {
-                user.setBalance(user.getBalance() + amount);
-                System.out.println("Deposited " + amount + " to " + username);
-                return;
-            }
-        }
-        System.out.println("User not found.");
-    }
+    public void checkBalance() {
+        try {
+            Connection conn = DBConnection.getConnection();
+            System.out.print("Enter Account ID: ");
+            int id = input.nextInt();
+            input.nextLine();
 
-    public void withdraw(String username, double amount) {
-        for (User user : users) {
-            if (user.getUsername().equals(username)) {
-                if (user.getBalance() >= amount) {
-                    user.setBalance(user.getBalance() - amount);
-                    System.out.println("Withdrew " + amount + " from " + username);
-                } else {
-                    System.out.println("Insufficient balance.");
-                }
-                return;
-            }
-        }
-        System.out.println("User not found.");
-    }
+            String sql = "SELECT * FROM accounts WHERE id = ?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, id);
+            ResultSet rs = stmt.executeQuery();
 
-    public void checkBalance(String username) {
-        for (User user : users) {
-            if (user.getUsername().equals(username)) {
-                System.out.println("Balance for " + username + ": " + user.getBalance());
-                return;
+            if (rs.next()) {
+                System.out.println("Account: " + rs.getString("name"));
+                System.out.println("Balance: Rs." + rs.getDouble("balance"));
+            } else {
+                System.out.println("❌ Account not found!");
             }
+        } catch (Exception e) {
+            System.out.println("❌ Error fetching balance.");
+            e.printStackTrace();
         }
-        System.out.println("User not found.");
     }
 }
