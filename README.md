@@ -1,106 +1,133 @@
-# 💰 Online Banking System
+💻 Online Banking System – Java Console Application
 
-A **simple Java-based banking application** with **MySQL** database integration that allows users to:
+A complete Java-based console application integrated with MySQL that simulates real-world banking operations with secure data persistence.
+✨ Features
+✅ Account Management
 
-- 🏦 Create new bank accounts  
-- 💸 Check account balances  
-- 👤 Manage customer data  
+    Create new bank accounts
 
----
+    View account details
 
-## 🛠️ Technologies Used
+    Check account balances
 
-- **Java** (Core Java, JDBC)  
-- **MySQL** (Database)  
-- **MySQL Workbench** (Database Management)  
-- **Maven** (Dependency Management)  
+💰 Transaction Processing
 
----
+    Deposit money
 
-## 🚀 Features
+    Withdraw funds
 
-- ✅ Account creation with initial deposit  
-- ✅ Balance inquiry  
-- ✅ Secure database storage  
-- ✅ Simple console-based interface  
+    Transfer between accounts
 
----
+📊 Transaction History
 
-## ⚙️ Setup Instructions
+    View all transactions
 
-### 📌 Prerequisites
+    Filter by date or transaction type
 
-- Java JDK 8 or later  
-- MySQL Server 5.7+  
-- MySQL Connector/J  
+🔒 Secure Database Storage
 
----
+    MySQL integration using JDBC
 
-### 🧩 Installation
+    Reliable and persistent data storage
 
-1. **Clone the repository:**
+🛠 Technologies Used
 
-```bash
+    Core Java (OOP Concepts, JDBC)
+
+    MySQL 8.0+
+
+    MySQL Workbench
+
+    Maven 3.8+ (Dependency Management)
+
+🚀 Getting Started
+✅ Prerequisites
+
+    Java JDK 17+
+
+    MySQL Server 8.0+
+
+    Maven 3.8+
+
+📥 Installation
+
 git clone https://github.com/chathusha1/OnlineBankingSystem.git
 
-    Import the project into your favorite Java IDE (e.g., IntelliJ IDEA, VS Code)
+    Open the project in your preferred Java IDE (IntelliJ IDEA, VS Code, etc.)
 
-    Set up the database using MySQL Workbench or CLI:
+🗃️ Database Setup
+1. Create the Database
 
 CREATE DATABASE online_banking;
 USE online_banking;
 
-CREATE TABLE accounts (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    balance DECIMAL(15,2) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
+2. Create the Tables
 
-    Configure DB connection in DBConnection.java:
+       CREATE TABLE accounts (
+          id INT AUTO_INCREMENT PRIMARY KEY,
+          name VARCHAR(100) NOT NULL,
+          balance DECIMAL(15,2) NOT NULL DEFAULT 0,
+          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+       );
 
-String url = "jdbc:mysql://localhost:3306/online_banking";
-String username = "your_username";
-String password = "your_password";
+       CREATE TABLE transactions (
+          id INT AUTO_INCREMENT PRIMARY KEY,
+          account_id INT NOT NULL,
+          type ENUM('DEPOSIT', 'WITHDRAWAL', 'TRANSFER') NOT NULL,
+          amount DECIMAL(15,2) NOT NULL,
+          related_account INT,
+          transaction_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+          FOREIGN KEY (account_id) REFERENCES accounts(id)
+       );
 
-    Run the application:
+▶️ Running the Application
 
-java -jar BankingApp.jar
+Compile and run:
 
-📋 Usage
+java -jar OnlineBankingSystem.jar
 
-Run the application and select options from the menu:
+🧭 Main Menu Options
 
-=== Online Banking System ===
-1. Create Account
-2. Check Balance
-3. Exit
+    1. Create Account  
+    2. Check Balance  
+    3. Deposit Money  
+    4. Withdraw Money  
+    5. Transfer Money  
+    6. View Account Details  
+    7. View Transaction History  
+    8. Exit
 
-👉 Follow the on-screen prompts to proceed.
-📂 Project Structure
+📁 Project Structure
 
-banking-app/
-├── src/
-│   ├── main/
-│   │   ├── java/
-│   │   │   ├── service/
-│   │   │   │   ├── BankService.java
-│   │   │   │   └── DBConnection.java
-│   │   │   └── Main.java
-│   │   └── resources/
-├── lib/
-│   └── mysql-connector-java-x.x.xx.jar
-└── README.md
+    online-banking-system/
+     ├── src/
+     │   └── main/
+     │       └── java/
+     │           ├── service/
+     │           │   ├── BankService.java
+     │           │   └── DBConnection.java
+     │           └── Main.java
+     ├── lib/
+     │   └── mysql-connector-java-8.0.xx.jar
+     ├── .gitignore
+     └── README.md
 
-📜 License
-
-This project is licensed under the MIT License – see the LICENSE file for details.
 🤝 Contributing
 
-Contributions are welcome!
-Fork the repo, make your changes, and create a pull request. ❤️
+    Fork the repository
+
+    Create your feature branch: git checkout -b feature/YourFeature
+
+    Commit your changes: git commit -m 'Add YourFeature'
+
+    Push to the branch: git push origin feature/YourFeature
+
+    Open a Pull Request
+
+📄 License
+
+    Distributed under the MIT License. See LICENSE for more information.
 📧 Contact
 
-R.M. Chathusha Dinuranga
-📩 Email: chathubrooit@gmail.com
-🔗 Project Link: Online Banking System on GitHub
+    Chathusha Dinuranga – chathubrooit@gmail.com
+    Project Link – chathusha1
