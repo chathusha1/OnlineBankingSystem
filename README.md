@@ -1,18 +1,41 @@
 
-## Getting Started
+# 💳 Online Banking System (Java Console App)
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+Welcome to the **Online Banking System**, a simple Java-based console application that simulates basic banking operations. This project was developed as part of an academic exercise to understand object-oriented programming (OOP) concepts in Java.
 
-## Folder Structure
+---
 
-The workspace contains two folders by default, where:
+## 🚀 Features
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+- 🧑 User Registration & Login
+- 💰 Check Account Balance
+- 💵 Deposit & Withdraw Funds
+- 📄 Transaction History
+- 🔐 Secure Password Validation
+- 📁 File-Based Data Storage (No Database)
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+---
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+## 📌 Technologies Used
+
+- Java (OOP, File Handling)
+- IntelliJ IDEA / VS Code
+- Git & GitHub for Version Control
+
+---
+
+## 🏗️ Project Structure
+
+```plaintext
+📁 Banking App/
+├── src/
+│   ├── Main.java
+│   ├── Bank.java
+│   ├── Account.java
+│   └── User.java
+├── data/
+│   └── user_data.txt
+└── README.md
 
 # Online Banking System
 
