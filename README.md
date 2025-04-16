@@ -37,10 +37,10 @@ Welcome to the **Online Banking System**, a simple Java-based console applicatio
 │   └── user_data.txt
 └── README.md
 
-# Online Banking System
+                                        # Online Banking System
 
-This is a Java-based console application for banking operations.
-Developed by R.M. Chathusha Dinuranga.
+#This is a Java-based console application for banking operations.
+#Developed by R.M. Chathusha Dinuranga.
 
 
 ## Dependency Management
