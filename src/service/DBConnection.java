@@ -6,14 +6,7 @@ public class DBConnection {
     private static final String URL = "jdbc:mysql://localhost:3306/online_banking";
     private static final String USER = "root";
     private static final String PASSWORD = "32213221";
-    
-    static {
-        try {
-            initializeDatabase();
-        } catch (SQLException e) {
-            System.err.println("Failed to initialize database: " + e.getMessage());
-        }
-    }
+
     
     public static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(URL, USER, PASSWORD);
